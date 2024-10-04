@@ -61,6 +61,7 @@ TELKOM UNIVERSITY PURWOKERTO <br>
 <br>
 1. SOAL NOMOR 1 <br>
    Source Code: <br>
+   
    ![soal1](img/soal1.png)
    <br>
    Output: <br>
@@ -71,6 +72,7 @@ TELKOM UNIVERSITY PURWOKERTO <br>
 
 2. SOAL NOMOR 2 <br>
    Source Code: <br>
+   
    ![soal1](img/soal2.png)
    <br>
    Output: <br>
@@ -81,6 +83,7 @@ TELKOM UNIVERSITY PURWOKERTO <br>
 
 3. SOAL NOMOR 3 <br>
    Source Code: <br>
+   
    ![soal1](img/soal3.png)
    <br>
    Output: <br>
