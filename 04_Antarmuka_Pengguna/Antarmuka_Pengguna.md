@@ -1,6 +1,6 @@
 # Cover #
 <div align="center">
-TUGAS PENDAHULUAN <br>
+LAPORAN PRAKTIKUM <br>
 PEMROGRAMAN PERANGKAT BERGERAK <br>
 <br>
 MODUL IV <br>
