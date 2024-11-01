@@ -200,11 +200,173 @@ class DetailProduct extends StatelessWidget {
   }
 }
 ```
-Output Code:
-<img src="img/1.unguided.png" width=250px>
-<img src="img/2.unguided.png" width=250px>
+Output Code:<br>
+<img src="img/1.guided.png" width=250px>
+<img src="img/2.guided.png" width=250px>
+
 ## 3. Notification
 
 Source Code 
 
 # Unguided
+
+Source Code main.dart
+```
+import 'package:flutter/material.dart';
+import 'home_page.dart';
+
+void main() {
+  runApp(MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'E-Commerce App',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: HomePage(),
+    );
+  }
+}
+
+```
+Source Code product.dart
+```
+class Product {
+  final String id;
+  final String title;
+  final String description;
+  final double price;
+  final String imageUrl;
+
+  Product({
+    required this.id,
+    required this.title,
+    required this.description,
+    required this.price,
+    required this.imageUrl,
+  });
+}
+
+```
+Source Code home_page.dart
+```
+import 'package:flutter/material.dart';
+import 'product.dart';
+import 'product_detail_page.dart';
+
+class HomePage extends StatelessWidget {
+  final List<Product> products = [
+    Product(
+      id: '1',
+      title: 'Product 1',
+      description: 'Description for Product 1',
+      price: 29.99,
+      imageUrl: 'assets/images/guitar.png', // Gambar diubah ke Asset
+    ),
+    Product(
+      id: '2',
+      title: 'Product 2',
+      description: 'Description for Product 2',
+      price: 49.99,
+      imageUrl: 'assets/images/ampli.png', // Gambar diubah ke Asset
+    ),
+    // Tambahkan lebih banyak produk sesuai kebutuhan
+  ];
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('E-Commerce App'),
+      ),
+      body: GridView.builder(
+        padding: const EdgeInsets.all(10),
+        gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+          crossAxisCount: 2,
+          childAspectRatio: 0.75,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10,
+        ),
+        itemCount: products.length,
+        itemBuilder: (context, index) {
+          return GestureDetector(
+            onTap: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ProductDetailPage(product: products[index]),
+                ),
+              );
+            },
+            child: Card(
+              child: Column(
+                children: <Widget>[
+                  Container(
+                    height: 150, // Tinggi tetap untuk gambar
+                    width: double.infinity, // Lebar mengikuti lebar kolom
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.asset(
+                        products[index].imageUrl,
+                        fit: BoxFit.cover, // Menyesuaikan gambar agar sesuai
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Text(products[index].title, style: TextStyle(fontWeight: FontWeight.bold)),
+                  ),
+                  Text('\$${products[index].price.toStringAsFixed(2)}'),
+                ],
+              ),
+            ),
+          );
+        },
+      ),
+    );
+  }
+}
+
+```
+Source Code product_detail_page.dart
+```
+import 'package:flutter/material.dart';
+import 'product.dart';
+
+class ProductDetailPage extends StatelessWidget {
+  final Product product;
+
+  ProductDetailPage({required this.product});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text(product.title),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Image.asset(product.imageUrl), // Ganti NetworkImage dengan AssetImage
+            SizedBox(height: 10),
+            Text(product.title, style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold)),
+            SizedBox(height: 10),
+            Text('\$${product.price.toStringAsFixed(2)}', style: TextStyle(fontSize: 20)),
+            SizedBox(height: 10),
+            Text(product.description),
+          ],
+        ),
+      ),
+    );
+  }
+}
+
+```
+Output Code:<br>
+<img src="img/1.unguided.png" width=250px>
+<img src="img/2.unguided.png" width=250px>
